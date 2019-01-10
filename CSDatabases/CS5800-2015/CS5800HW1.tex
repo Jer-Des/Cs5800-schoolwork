@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+ \begin{document}
+ 
+
+
+\title{Homework 1\\CS5800}
+\author{Jeremy Desser}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+\section{Relational Algebra}
+\subsection{}
+\sigma_{AGE } Actor
+\subsection{}
+\pi_{Title}(\sigma_{WhenReleased = "1940" } Movie)
+\subsection{}
+1. \pi_{Title}(\sigma_{Cost>1000000 \wedge WhenReleased<"1920"}Movie) \\
+2. Movies$_{Title }$ \cap Movies$_{cost > 1000000 \wedge WhenReleased < "1920"}$
+\subsection{}
+ \pi_{Name, Age}(\sigma_{Movie.WhenReleased =" 1940"}(Actor \bowtie (CastIn \bowtie Movie)))
+\subsection{}
+\pi_{Name, Age}(\sigma_{Movie.WhenReleased <" 1920"}(Actor \bowtie (CastIn \bowtie Movie)))
+\subsection{}
+(\sigma_{Name} Actor) - (\pi_{Actor.Name}(\sigma CastIn.Name(Actor \bowtie (CastIn \bowtie Movie)))
+\subsection{}
+\pi_{Name}(\sigma_{$R_1$.Name = $R_2$.Name}(\rho($R_1$,(Actor \bowtie CastIn))X \rho($R_2$,(Actor \bowtie CastIn))))
+\subsection{}
+\pi_{Name}( (CastIn \bowtie (Movie \bowtie Actor) )
+\subsection{}
+\rho $R_1$(Actor \bowtie CastIn \: \bowie \sigma_{WhenReleased} \bowtie Movie)\\
+\rho $R_2$(Actor \bowtie CastIn \: \bowie \sigma_{WhenReleased} \bowtie Movie)\\
+\rho$R_3$(Actor \bowtie CastIn \: \bowie \sigma_{WhenReleased} \bowtie Movie))\\
+\pi_{Name}(\sigma_{$R_1$.WhenReleased = $R_2$.WhenReleased+1 \wedge $R_2$.WhenReleased = $R_3$+1 \vee $R_1$.WhenReleased = $R_2$.WhenReleased-1 \wedge $R_2$.WhenReleased = $R_3$.WhenReleased+1 }($R_1$ \bowtie ($R_2$ \bowtie $R_3$)))
+\subsection{}
+(\pi_{Name}(Actor \bowtie \:(Movie \bowtie CastIn )))\bowtie(\pi_{Name}(\sigma_{$R_1$.Name = $R_2$.Name}(\rho($R_1$,(Actor \bowtie CastIn))X \rho($R_2$,(Actor \bowtie CastIn)))))-(\sigma_{Name} Actor) - (\pi_{Actor.Name}(\sigma CastIn.Name(Actor \bowtie (CastIn \bowtie Movie)))
+\section{Exercise 2.14}
+Three-tier architecture, it adds a middle layer that helps keep all the rules managed for the clients.
+The two-tiered architecture might end up being a bit confusing for someone just looking to buy plane tickets since they would have to deal with api's and such.
+\section{Exercise 3.12}
+a. update Insert and Number\_of\_available\_seats of Leg\_Instance with flight\_number = xxxxx to Number\_of\_available\_seats = Number\_of\_available\_seats -1.\\
+b. You would need to check that there are no seats left, the flight date could have passed\\
+c.The Insert Operation onto the Seat\_reservation table will check all the constraints for the relation.
+number\_of\_available\_seats on each Leg\_Instance of the flight \textless \: 1 doesn't fall into any of the listed constraints.\\
+
+\section{Exercise 3.14}
+ Order(Cust\#) is a foreign key on Customer(Cust\#) \\
+ Order(Order\#) is a foreign key on Order\_Item(Order\#)\\
+ Shipment(Warehouse\#)  is a foreign key on Warehouse(Warehouse\#)\\
+  Order(Order\#)  is a foreign key on Shipment(Order\#)
+
+ 
+\end{document}

@@ -1,0 +1,108 @@
+   
+   
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+ \begin{document}
+ 
+
+
+\title{Homework 3}
+\author{Jeremy Desser}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+\section*{15.26}
+\subsection*{a.}
+\subsection*{i.} $A \rightarrow B $ Does not hold.
+\subsection*{ii.} $B \rightarrow C $ Dependancy holds.
+\subsection*{iii.} $C \rightarrow B $ Does not hold.
+\subsection*{iv.} $B \rightarrow A $ Dependancy holds.
+\subsection*{v.} $C \rightarrow A $ Does not hold.
+
+
+\subsection*{b.}
+ Since a candidate key  is a set of attributes $x$ such that $x \rightarrow ABC$, x can only be B, thus B is the only candidate key.
+\section*{15.28} 
+
+
+\section*{15.31} 
+\subsection*{a.}
+The Books relation is in 1NF since book title \rightarrow book\_type and book\_ type ->List\_ price\\
+\subsection*{b.}
+2NF:\\
+    book1(Book\_title, Authorname)\\
+    book2(Book\_title, Publisher, Book\_type, Listprice)\\
+    book3(Authorname, Author\_ affil)\\
+    3NF:\\
+    book1(Book\_title, Authorname)\\
+    book2(Book\_title, Publisher, Book\_ type)\\
+    book3(Book\_title, list\_ price)\\
+    book4(Authorname, Author\_ affil)\\
+    BCNF:\\
+book1(Book\_title, Authorname)\\
+    book2(Book\_title, Publisher)\\
+book3(Book\_title, Book\_ type)\\
+    book4(Book\_title, list\_ price)\\
+    book5(Authorname, Author\_ affil)\\
+\section*{16.28}
+Input: A universal relation R and a set of functional dependencies F on the attributes of R .\\
+Set D := { R } ; \\
+While there is a relation schema Q in D that is not in BCNF \\
+do \\
+{ 
+choose a relation schema Q in D that is not in BCNF; \\
+find a functional dependency X → Y in Q that violates BCNF;\\
+replace Q in D by two relation schemas ( Q – Y ) and ( X ∪ Y ); \\
+} ;
+$R = {A, B, C, D, E, F, G, H, I} $\\
+$D= R$\\
+$F = { {A, B} -> {C}, {A} -> {D, E}, {B} -> {F}, {F} ->{G, H}, {D} -> {I, J} }$\\
+
+$Q1 = {A,D,E,I,J}$\\
+$Q1-Y1 = {A,D,E}$\\
+$X1 U Y1 = {D,I,J}$\\
+
+$Q2 = {B,F,G,H}$\\
+$Q2-Y2 = {B,F}$\\
+$X2 U Y2 = {F,G,H}$\\
+$D = {Q1-Y1 = {A,D,E}$\\
+$X1 U Y1 = {D,I,J}$\\
+$Q2-Y2 = {B,F}$\\
+$X2 U Y2 = {F,G,H} }$\\
+$G = {{ A , B } → { C }, { B , D } → { E , F }, { A , D } → { G , H }, { A } → { I }, { H } → { J } }$\\
+$Q1 = {A,D,G,H,J,I}$\\
+$Q1-Y1 = {AGH}$\\
+$X1 U Y1 = {AI}$\\
+$Q2-Y2={A,D,H,J}$\\
+$Q2-Y2={A,D,H}$\\
+$X2 U Y2 = {H,J}$\\
+$Q3 = {B,D,E,F}$\\
+
+\section*{28.15}
+There is only one frequent itemset of size 3, {milk,bread,eggs}.  We can try the rule milk,eggs -> bread.  The confidence of this rule  is 0.3/0.3 which is higher than the min confidence value of 0.7.  We can also try is bread -> milk,eggs.  The confidence of this rule is 0.3/0.4 which again is higher than the required minimum confidence.\\
+
+
+\end{document}

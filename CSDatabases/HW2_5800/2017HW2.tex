@@ -1,0 +1,127 @@
+   
+   
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+ \begin{document}
+ 
+
+
+\title{Homework 2}
+\author{Jeremy Desser}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+
+\section*{17.18}
+\subsubsection*{a)}
+$block pointer(6)+record pointer(7) +(Name (30 bytes)+Ssn (9 bytes)+ Department\_code (9 bytes)+ Address (40 bytes)+Phone (10 bytes)+
+ Birth_date (8 bytes)+ Sex (1 byte)+ Job\_code (4 bytes))$
+ 
+ $6+7+(30+9+9+40+10+8+1+4) = 124$ Bytes 
+\subsubsection*{b)}
+$bfr =\frac{512}{124}=4.12$ ~ 4 records per block\\
+ $\frac{30000 records}{4 records per block} = 7500$ blocks
+\subsubsection*{g)}
+\subsection*{i}
+$(p * P) + ((p − 1) * Ssn) \geq B$\\
+$(p * 6) + ((p − 1) * 9) \geq 512$\\
+$(15 * p) \geq 512$\\
+$p = \frac{512}{15}$\\
+$p=34$\\
+
+$(pleaf * (Pr + Ssn)) + P \geq B$\\
+$(pleaf * (7 + 9)) + 6 \geq 512$\\
+$(16 * pleaf) \geq 506$\\
+$pleaf = \frac{506}{16} = 31$\\
+
+\subsection*{ii}
+$31*0.69 ~= 21$
+
+\subsection*{iii}
+$34*0.69 = 23$
+
+\subsection*{iv}
+ $\frac{30000 records}{4 records per block} = 7500$ blocks
+
+\subsection*{v}
+
+\section*{x}
+\subsection*{i}
+$(p * P) + ((p − 1) * Ssn) \geq B$\\
+$(p * 6) + ((p − 1) * 9) \geq 512$\\
+$(15 * p) \geq 512$\\
+$p = \frac{512}{15}$\\
+$p=34$\\
+
+$(pleaf * (Pr + Ssn)) + P \geq B$\\
+$(pleaf * (7 + 9)) + 6 \geq 512$\\
+$(16 * pleaf) \geq 506$\\
+$pleaf = \frac{506}{16} = 31$\\
+
+\subsection*{ii}
+$31*0.69 ~= 21$
+
+\subsection*{iii}
+$34*0.69 = 23$
+
+\subsection*{iv}
+ $\frac{30000 records}{4 records per block} = 7500$ blocks
+
+\subsection*{v}
+$512/16 = 32$ records per block\\
+$30000 / 32 938 blocks$\\
+$O(log_2 n)$\\
+$log 30000 = 14.87 ~ 15 block accesses$\\
+
+
+\section*{17.19}
+					      $[28, 46, 60]$\\
+		$[18, 23]$          $[37, 39] $        $[48, 56]$         $[71, 78]$\\
+$[8, 10]$   $[15, 16]$   $[18, 20, 21]$  $[23, 24]$  $[28, 33]$  $[37, 38]$  $[39,43]$  $[46, 47] $ $[48, 49 ,50]$  $[56, 59]$ $[60, 65, 69]$  $[71, 74, 75]$ $[78, 92]$\\
+
+\section*{18.13}
+\subsubsection*{b final tree)}
+
+		\pi_{Fname,Lname,Address} \\
+			\downarrow \\
+	    \sigma{Dnumber = Dno}\\
+	     \downarrow \\
+	    JOIN\\
+	    \downarrow \\
+	    		\swarrow \hspace{30mm}  \searrow \sigma{Dname = Research} \\
+EMPLOYEE \hspace{10mm} DEPARTMENT
+
+\section*{18.15}
+No, the AVERAGE and SUM aggregate functions require a dense index. The other functions such as MIN, MAX, COUNT could be used with a nondense index.\\
+
+\section*{19.21}
+selectivity for Employee 1/10000\\
+selectivity for Department 1/50\\
+selectivity for salary 1/500\\
+number of record pointers for Employee:  $10000/2000$ 5 rows per block\\
+number of record pointers for Department $50/5$: 10 rows per block\\
+\end{document}

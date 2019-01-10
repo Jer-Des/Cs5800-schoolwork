@@ -1,0 +1,73 @@
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+ \begin{document}
+ 
+
+
+\title{ER Diagram}
+\author{Jeremy Desser}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+\section{}
+\includegraphics[scale=.9]{ErDiagram}
+\section{Overview}
+For my ER Model I chose to do field biology in the form of a conservationist effort. There are a few things needed for such a model. The conservation, and the animals are the most important things. The animals have a diet, a habitat, and a tracking device with a unique ID. The conservation need employees, a company or non-profit associated with it, and a location around the world they are working from. Each employee also has a one to many jobs it performs. This can be any number of things such as local veterinarian, caretaker, ect. 
+
+
+\section{Entity Types}
+Habitat$(\underline{country }, Biome, IsGovermentProtected,\underline{ longitude_atitude},\underline{ Animals_idAnimals})$ \\
+
+Diet$(\underline{ idDiet}, Herbavore, Carnavore, SpecificFood, foodLocal)$ \\ 
+
+Animals$(\underline{ animalType}, \underline{ idAnimals}, weight, endangered, \underline{diet_idDiet}, \underline{ trackingID})$ \\
+
+Tracking$(\underline{ trackingNumber}, initalGpsPosition, lastKnownGpsPosition)$ \\
+
+Employee$(\underline{ idEmployee}, firstName, lastName, countryStationed)$ \\
+
+Jobs$(\underline{ IdJob}, JobTitle, JobDiscription, EmployeeId)$ \\ \\
+Most keys were pretty simple habitat key is a combination of physical location on the globe and a country name since that will always be unique. Diet and animal have a foreign key of animalID and animalType. Animal has a combination of ID and animal type for its keys. Tracking makes sense as a unique number since that is what it would be in the wild.
+Each employee would have an ID, and personal information like a first and last name, SSN that could be used as a key.
+
+\section{Relationship Types}
+Conservationist Company $(\underline{ conservationist_idConservationist}, \underline{ employee_idEmployee}, employeeName)$ \\
+
+Animals\_under\_protection$(\underline{Conservationist_idConservationist},\underline{Animals_idAnimals}, companyName, AnimalType)$\\ 
+
+\section{Alpha Contributions}
+1. An Animal has a Diet. it can eat one to many things, and the animal has total participation.\\
+2. An animal may live in many different locations, and a habitat might house many different animals.\\
+3. An animal has a diet, a habitat, and may have a place in which its under protection\\
+4. An animal might have protection of a conservation, or need protection of a conservation.\\
+5. An employee has a job or many jobs.\\
+6. The diet table has many values that are only boolean.\\
+7. Since an employee can have multiple jobs, this would be multi-valued.\\
+
+\section{Beta Contributions} 
+I did the project solo, so I did all the contributions myself.
+ 
+\end{document}

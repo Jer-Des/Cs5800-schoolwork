@@ -1,0 +1,66 @@
+   
+   
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+ \begin{document}
+ 
+
+
+\title{Homework 3}
+\author{Jeremy Desser A00692027}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+
+\section*{14.26}
+
+\subsection*{a}
+\subsection*{i.} $A \rightarrow B $ Does not hold.\\
+\subsection*{ii.} $B \rightarrow C $ Dependancy holds.\\
+\subsection*{iii.} $C \rightarrow B $ Does not hold.\\
+\subsection*{iv.} $B \rightarrow A $ Dependancy holds.\\
+\subsection*{v.} $C \rightarrow A $ Does not hold.\\
+\subsection*{b}
+ Since a candidate key  is a set of attributes $x$ such that $x \rightarrow ABC$, x can only be B, thus B is the only candidate key.\\
+ \newpage
+\section*{14.31}
+
+\subsection*{a.}
+The Books relation is in 1NF since book title $\rightarrow$ book\_type and book\_ type $\rightarrow$ List\_ price\\
+\subsection*{b.}
+    BCNF:\\
+book1(Book\_title, Authorname)\\
+    book2(Book\_title, Publisher)\\
+book3(Book\_title, Book\_ type)\\
+    book4(Book\_title, list\_ price)\\
+    book5(Authorname, Author\_ affil)\\
+
+\section*{28.15}
+There is only one frequent itemset of size 3, {milk,bread,eggs}.  We can try the rule milk,eggs $\rightarrow$ bread.  The confidence of this rule  is 0.3/0.3 which is higher than the min confidence value of 0.7.  We can also try is bread $\rightarrow$ milk,eggs.  The confidence of this rule is 0.3/0.4 which again is higher than the required minimum confidence.\\
+
+
+\end{document}

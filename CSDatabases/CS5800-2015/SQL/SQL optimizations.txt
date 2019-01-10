@@ -1,0 +1,34 @@
+1.
+	1- .499 seconds
+	2- changed commas to JOIN, in from statement. chanted name = montreal expos
+	3- .171 seconds
+2.
+	1- .203 seconds
+	2- changed SELECT to SELECT DISTINCT and changed comma to JOIN in FROM statement
+	3- .125 seconds
+	
+3.
+	1-112 seconds before I stopped it.
+	2-Unsure what this query was trying to accomplish, if it was just to get Derek Jeter's MasterID, then
+	  deleting the 3 extra appearances tables is much faster.
+	3- took ~ .250 seconds to run the above changes.
+		
+4.
+	1-.062 seconds
+	2- This query was pretty fast, I don't think there is much to optimize.
+	3- N\A
+	
+5.
+	1- ~ 40 seconds to run
+	2- This query was hard to decipher, not quite sure what to do with it.
+	3-
+	
+6.
+	1- 3.83 seconds
+	2- JOINs instead of commas and switching likes to equals shaves time off.
+	3- 3.650
+	
+7.
+	1- .125 seconds
+	2- Couldn't find much time to shave off this one
+	3- N/A

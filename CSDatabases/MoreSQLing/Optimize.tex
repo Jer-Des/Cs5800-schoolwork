@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+ \begin{document}
+ 
+
+
+\title{MoreSQL-ing}
+\author{Jeremy Desser}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+\section{Query 1} 
+
+\subsection{}This query returned an error when ran. Therefore the cost of initially running it was Null.
+\subsection{}
+To get this query to return anything, I made the following changes:\\
+SELECT \\
+    DISTINCT m.nameFirst, m.nameLast, a.W\\
+FROM\\
+    master m,\\
+    pitching a,\\
+    teams t\\
+WHERE
+    m.masterId = a.masterId\\
+        AND t.teamId = a.teamId\\
+        AND t.lgID = a.lgID\\
+        AND t.name like\\
+		"Montreal Expos"\\
+AND t.yearID = a.yearId AND a.w {\geq 20}\\
+
+
+\subsection{}
+After the above changes, it took .141 seconds to return the answer.
+
+\section{Query 2}
+\subsection{} Like the above query, running this question returned no tuples for me. After switching the given query from 3 queries joined together, to one query with multiple JOIN statements, I got an answer returned.
+\subsection{}
+SELECT h / ab as Average, h as "Hits", ab as "At Bats", nameFirst as "First Name",\\ nameLast as "Last Name", batting.yearID as Year\\
+FROM  master as m JOIN batting ON m.masterID = batting.masterID \\
+	JOIN schoolsplayers AS s ON m.masterID = s.masterID \\
+	JOIN schools as c ON c.schoolID = s.schoolID\\
+WHERE c.schoolName = 'Utah State University' && batting.H \geq 0\\
+ORDER BY batting.yearID ASC ;\\
+
+I changed the multiple query join to a join with schoolsplayers and schools and it returned rows.\\
+\subsection{}
+After the above changes, it took 0.094 seconds to run.
+\section{Query 3}
+\subsection{}The given query wouldn't finish running on my machine(older machine).
+\subsection{}
+It was difficult to see what the query was trying to do. If you want to find the people Derek Jeter played with on a team you can do a query to find all the years and teams Derek Jeter played for, then INNER JOIN that with a list of all the players.\\
+
+SELECT DISTINCT players.yearID as "Year", players.nameFirst as "First Name",\\ players.nameLast as "Last Name"\\
+    FROM (\\
+    SELECT yearId, name AS teamName, nameFirst, nameLast\\
+	FROM master\\
+	NATURAL JOIN appearances\\
+	NATURAL JOIN teams) as players INNER JOIN (\\
+    SELECT yearId, nameFirst, nameLast, name AS teamName\\
+FROM master\\
+	NATURAL JOIN teams\\
+	NATURAL JOIN appearances\\
+WHERE nameFirst = "Derek"\\
+	AND nameLast = "Jeter") as Jeter\\
+    ON players.yearID = Jeter.yearId AND players.teamName = Jeter.teamName\\
+\subsection{}
+Such a query took my machine 0.938 seconds to run, which was better than the first one which crashed mySQL workbench and never finished running.
+\clearpage
+\section{Query 4}
+\subsection{}This query took .094 seconds to run.
+\subsection{}This query was pretty fast to begin with and I could not think of any ways to improve upon it.\\
+You need the subquery to find the max wins of each year, then the main query to show each of the highest wins of the year played.
+\subsection{} N/A
+
+\section{Query 5}
+\subsection{} This query took 40.76 seconds to run.
+\subsection{}Although I had problems optimizing this one you could create a view to find all the batting averages. Then find the averages of those averages and return which averages are bigger than the average of all the batters.
+\subsection{} Couldn't get the query to run.
+
+\section{Query 6}
+\subsection{}
+This query took 3.68 seconds to run on my computer.
+\subsection{}
+This query would be rough to optimize since to find the 4 years you need to join the 4 queries. Perhaps adding more constraints on the end could speed it up. I personally couldn't get it much faster
+\subsection{}
+Trying to optimize this query I got one that was about 3.375 seconds,but I had left out a query on accident and one that was far slower than the original at 17 seconds.
+\section{Query 7}
+\subsection{}
+This query ran in .218 seconds.
+\subsection{}This query was fast to begin with. I couldn't get it to run much faster. It is necessary to run the sub-queries to get the consecutive years and the first query to find the team names needed.
+\subsection{}N/A
+
+ 
+ 
+ 
+\end{document}

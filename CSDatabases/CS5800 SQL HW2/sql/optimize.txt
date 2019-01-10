@@ -1,0 +1,26 @@
+1.
+	1 The query took .78 seconds to run on average at first
+	2 I added WHERE HR > 0 since it excludes people who have no HRS
+	3 After the addition it took on average .62 seconds to run
+2. 
+	1
+	2 added subqueries and where clauses between queries
+	3
+	I couldn't get this query to run properly.
+3.
+	1 Original took .156 on average
+	2 added distinct clause in the inner query, removed hrs that were < 0
+	3 Reworked query took about .14 seconds to finish
+
+4.
+	1 Original took more than 20 seconds to run
+	2 removed inner queries since they seemed to do something you could without subqueries
+	3 Reworked query took about 2.24 seconds to finish
+5.
+	1N/A
+	2 this problem was super quick as it was, I did not see the need to optimize.
+	3 n/A
+6.
+	1 
+	2 cleaned up the alias' in the query
+	3 

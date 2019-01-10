@@ -1,0 +1,191 @@
+   
+   
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx}
+\usepackage{graphics}
+\topmargin0.0cm
+\headheight0.0cm
+\headsep0.0cm
+\oddsidemargin0.0cm
+\textheight23.0cm
+\textwidth16.5cm
+\footskip1.0cm
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{surfacecor}{Corollary 1}
+\newtheorem{conjecture}{Conjecture} 
+\newtheorem{question}{Question} 
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+ \begin{document}
+ 
+
+
+\title{Homework 2}
+\author{Jeremy Desser}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+
+\section*{17.28}
+\subsection*{a)}
+$R = 30+9+40+10+8+1+4+4+4+3+1 = 114$ bytes
+\subsection*{b)}
+Block size $B = 512$ \\
+   $ 512/114$ = $4$ R $56$ \\
+   $ bfr = 4$
+\subsection*{c)}
+ (i) \\
+       $ b/2  (b = num blocks) = 20000/4/2 = 2500$\\
+        With double blocking, only needed for 1st one:\\
+         avg seek time = 30 msec\\
+       
+        $ rd = 12.5 msec$ \\
+
+        $avgTime=seek+rd+2500*btt=30+12.5+2500*5.76=14442.5 msec$\\
+(ii)\\
+	    The file blocks are not stored contiguously.\\
+        $avgTime=(seek+rd+btt)*2500=120700 msec$
+\subsection*{d)}
+$log2(b)*30msec = log2(5000)-12.287$\\
+    $avgTime=(seek+rd+btt)*12.287=593 msec$
+\section*{18.18 } 
+\subsection*{a)}
+Record length $R = (30 + 9 + 9 + 40 + 9 + 8 + 1 + 4 + 4) + 1 = 115 $bytes
+\subsection*{b)}
+bfr = $\lfloor B/R \rfloor = \lfloor 512/115 \rfloor = 4$ records per block\\
+
+Number of blocks needed for file$ = \lceil r/bfr \rceil = \lceil 30000/4 \rceil = 7500$
+\subsection*{c)}
+\subsection*{(i)}\\
+Index record size $R_i = (V_{SSN} + P) = (9 + 6) = 15 bytes$\\
+Index blocking factor $bfr_i= fo = \lfloor B/R_i \rfloor
+ ) = \lfloor 512/15 \rfloor = 34 $ \\
+\subsection*{(ii)}\\
+Number of first-level index entries $r_1$
+ = number of file blocks b = 7500 entries \\
+Number of first-level index blocks $b_1= \lceil r_1/ bfr_i \rceil = \lceil 7500/34 \rceil = 221$ blocks \\
+\subsection*{(iii)}\\
+
+Number of second-level index entries $r_2= number of first-level blocks b_1
+= 221 entries $\\
+Number of second-level index blocks$ b_2 = \lceil r 2 /bfr_i \rceil = \lceil 221/34 \rceil 
+= 7 blocks$ \\
+Number of third-level index entries $r_3 = number of second-level index blocks b_2 = 7 entries $ \\
+Number of third-level index blocks$ b_3 = \lceil r_3 / bfr_i\rceil = \lceil 7/34 \rceil = 1 $ \\
+Since the third level has only one block, it is the top index level. 
+Hence, the index has $x = 3$ levels \\
+
+\subsection*{(iv)}\\
+Total number of blocks for the index $b_i= b_1 + b_2 + b_3= 221 + 7 + 1 = 229$ blocks \\
+
+\subsection*{(v)}\\
+Number of block accesses to search for a record $= x + 1 = 3 + 1 = 4$
+\subsection*{d)}
+\subsection*{(i)}\\
+Index record size $R_i = (V_{SSN} + P) = (9 + 6) = 15 bytes$ \\
+Index blocking factor $bfr_i= fo = \lfloor B/R_i \rfloor
+ ) = \lfloor 512/15 \rfloor = 34 $ \\
+\subsection*{(ii)}\\
+Number of first-level index entries $r_1 = $number of file records$ r = 30000 $ \\
+Number of first-level index blocks$ b_1 = \lceil r_1/bfr_i \rceil = \lceil 30000/34 \rceil = 883 blocks $ \\
+\subsection*{(iii)}\\
+We can calculate the number of levels as follows: \\
+Number of second-level index entries$ r_2=$ number of first-level index blocks $b_1 
+= 883 entries $\\
+Number of second-level index blocks$ b_2 = \lceil r_2 /bfr_i \rceil = \lceil 883/34 \rceil
+= 26 blocks $\\
+Number of third-level index entries $r_3 =$ number of second-level index blocks$ b_2
+= 26 entries $\\
+Number of third-level index blocks$ b_3=\lceil r_3 / bfr_i\rceil = \lceil 26/34\rceil = 1$ 
+Since the third level has only one block, it is the top index level. 
+The index has x = 3 levels \\
+\subsection*{(iv)}\\
+Total number of blocks for the index$ b_i = b_1 + b_2 + b_3 = 883 + 26 + 1 = 910 $\\
+\subsection*{(v)}\\
+Number of block accesses to search for a record$ = x + 1 = 3 + 1 = 4$
+\\
+
+\subsection*{e)}\\
+\subsection*{(i)}\\
+Index record size $R_i = (V departmentCode + P) = (9+6) = 15 $ bytes
+\subsection*{(ii)}\\
+	There are 1000 values of DepartmentCode, the average number of records for each value is $r/1000 = 30000 / 1000 = 30$ \\
+
+	Since a record pointer size P R = 7 bytes, the number of bytes needed at the level of indirection for each value of DepartmentCode is $7 * 30 = 210 $ bytes which fits in one block. So 1000 blocks are needed for the level of indirection.\\
+\subsection*{(iii)}\\
+Number of first level index entries $R_1 = $number of distinct values of DepartmentCode = 1000 entries\\
+Number of first level index blocks $b_1 = \lceil R_1 / bfr_i \rceil  = \lceil 1000/34 \rceil = 30$ blocks\\
+\subsection*{(iv)}\\
+Number of second level index entries $r_2 = $ Number of first level index blocks $b_1$ = 30 blocks \\
+Number of second level index blocks $b_2 \lceil r_2 /bfr_i \rceil = \lceil 30/34 \rceil = 1$ so the index has $x = 2$ levels.\\
+\subsection*{(v)}\\
+total number of blocks for the index $b_i =b_1+b_2+b$ indirection = $30+1+1000 = 1031$ blocks.\\
+\subsection*{(vi)}\\
+ Number of block accesses to search for and retrieve the block containing the record pointers at the level of indirection = $x + 1 = 2 + 1 = 3$ block accesses.\\
+ Assuming that the 30 records are distributed over 30 distinct blocks we will need an additional 30 block accesses to retrieve all 30 records. So, total block accesses needed on average to retrieve all records with a given value for DepartmentCode = $x+1+30 = 33$\\
+\subsection*{f)}\\
+
+\subsection*{(i)}\\
+Index record size $R_i = (V DepartmentCode + P) = (9+6) = 15$ bytes\\
+Index blocking factor $bfr_ifo = \lfloor B/R_i \rfloor = \lfloor 512/15 \rfloor =34 index records per block$\\
+
+\subsection*{(ii)}\\
+Number of first level index entries $r_1 =$ number of distinct values of DepartmentCode = 1000 entries\\
+Number of first level index blocks $b_1 = \lceil r_1 / bfr_i \rceil =\lceil 1000/34 \rceil= 30$ blocks.\\
+
+\subsection*{(iii)}\\
+Number of second level index entries $r_2 =$ number of first level index blocks $b_1 = 30$ entries\\
+Number of second level index blocks $b_2 = \lceil r_2 / bfr_i \rceil =\lceil 30/34 \rceil= 1$ Since the second level has one block, it is the top level index.\\
+the index has $ x = 2$ levels\\
+\subsection*{(iv)}\\
+total number of blocks for the index $b_i = b_1 + b_2 = 30 + 1$ blocks\\
+\subsection*{(v)}\\
+Number of block accesses to search for the first block in the cluster of blocks = $x + 1 = 2 + 1 = 3$\\
+
+The 30 records are clustered in $\lceil 30/bfr \rceil = \lceil 30/4 \rceil = 8$ blocks.\\
+So, total block accesses needed on average to retrieve all records with a given value for DepartmentCode = $x + 8 = 2 + 8 = 10$ block accesses
+
+
+
+\subsection*{g)}\\
+\subsection*{(i)}\\
+For a B+ tree of order $p$, the following inequality must be satisfied for each internal tree node:\\
+$(p*P) + ((p-1) * V_{snn}) < B$ or $(p*6) + ((p-1) * 9) < 512$ = $15p < 521$, $p = 34$\\
+For leaf nodes:\\
+$(p_{leaf} * (V_{ssn} + P_R)) + P < B$ or $(p_{leaf} * (9+7)) + 6 < 512$ = $15p < 512$, so $p = 34$\\
+\subsection*{(ii)}\\
+Assuming nodes are 69 percent full on average, the number of key values in a leaf node are:\\
+$0.69 * p_{leaf} = 0.69 * 31 =21.39$ rounded up we get 22 key values and 22 record pointers per leaf nodes. Since the file has 30000 records and thus 30000 values of SSN, the number of leaf level nodes needed is $b_1 = \lceil 30000/22 \rceil = 1364$ blocks
+\subsection*{(iii)}\\ 
+The number of levels are calculated as follows:\\
+The average fan-out for the internal nodes (rounded up) is fo = $\lceil 0.69*p \rceil = \lceil 0.69*34 \rceil = \lceil 23.46 \rceil = 24$\\
+number of second level tree blocks, $b_2 = \lceil b_1/fo \rceil = \lceil 1364/24 \rceil = 57$ blocks \\
+number of third level tree blocks $b_3 = \lceil b_2/fo \rceil = \lceil 57/24 \rceil =3$\\
+number of fourth level tree blocks $b_4 = \lceil b_3 / fo \rceil = \lceil 3/24 \rceil = 1$\\
+since the fourth level has one block, the tree has $x = 4 $ levels
+\subsection*{(iv)}\\
+total number of blocks for the tree $b_i = b_1+b_2+b_3+b_4 = 1364+57+3+1 = 1425$ blocks\\
+\subsection*{(v)}\\
+number of block acceses to search for a record =$ x+1 = 4+1 = 5$
+
+\section*{19.13} 
+\subsection*{a)}
+\subsection*{b)}
+\subsection*{c)}
+
+
+\section*{19.17}
+Yes,for the MIN, MAX operator, the optimizer can use the nondense-index to search for the smallest and biggest value in a similar way to dense index. For instance, to search for the biggest value, it will follow the rightmost pointer in each index node from the root to the right most leaf. \\
+For COUNT, AVERAGE and SUM operators, it is slightly different. The actual number of 
+records associated with each index entry must be used for a correct computation. \\
+\section*{19.22}
+
+\end{document}

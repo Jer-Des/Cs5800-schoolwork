@@ -1,0 +1,106 @@
+----View 1: Count the randomArrayItems
+
+   {
+   "_id": "6006d1a2040c9194a66eef7327003543",
+   "rev": null,
+   "language": "Javascript",
+   "views": "{
+       "countRandomArrayItems": {
+           "map": 
+		   function(doc) {
+				 for (var i in doc.data) {
+				 var data = doc.data[i];
+				 emit(data.randomArrayItem, 1);
+				}
+			 }
+           "reduce": 
+		   function(keys, values, rereduce) {
+		   return values.length;
+		   }
+       }
+   }
+
+----View 2: Name(s) of the person(s) with the maximum age, and their age(s) by gender and whether they are active or not. 
+"views": {
+       "maxAge": {
+           "map": 
+		 function(doc) {
+		 for (var i in doc.data) {
+			var data = doc.data[i];
+			emit([data.gender,data.isActive],{age:data.age, name:data.name});
+		}
+	 }
+	    "reduce":
+		function(keys, values, rereduce) {
+		var temp = max(values.age);
+		if(values.age > temp)
+		temp = values.age;
+
+return temp;
+}	
+3.----View 3: A count of the people by tags, that is, count all the people with the given value in the tags array.
+"views": {
+       "TagsArray": {
+           "map": 
+		  function(doc) {
+		 for (var i in doc.data) {
+		 var data = doc.data[i];
+		 emit(data.tags[i],1);
+		}
+	 }
+	    "reduce":
+		function(tag, counts) {
+  var sum = 0;
+  for(var i=0; i < counts.length; i++) {
+     sum += counts[i];
+  }
+  return sum;
+}
+----View 4: The average age of people by company. 
+"views": {
+       "AverageAge": {
+           "map": 
+		function(doc) {
+		 for (var i in doc.data) {
+		 var data = doc.data[i];
+		 emit(data.company,data.age);
+		}
+	 }
+	    "reduce":
+	function(keys, values, rereduce) {
+    if (!rereduce){
+        var length = values.length
+        s = sum(values) / length
+        return s.toPrecision(3);
+    }else{
+        var length = sum(values.map(function(v){return v[1]}))
+        var avg = sum(values.map(function(v){
+            return v[0] * (v[1] / length)
+            }))
+        return math.round(avg)
+    }
+}
+----View 5: The JSON of the lattitude, longitude, and address of each employee that has a lattitude of more than 80.
+"views": {
+       "LongandLat": {
+           "map": 
+	function(doc) {
+		 for (var i in doc.data) {
+		 var data = doc.data[i];
+		if(data.latitude >= 80 )
+		 emit(data.id,{latitude: data.latitude , longitude:data.longitude , address: data.address });
+		}
+	 }
+}
+----View 6: Names of people and their frineds that start with the letter "J" if they have at least one friend whose name starts with the letter "J". 
+  function(doc) {
+   for (var i in doc.data) {
+	var data = doc.data[i];
+	for(var j in data.friends){
+	   friend = data.friends[j]
+	   if(friend.name.indexOf('J') == 0)
+	   emit(data.name, friend.name);
+	}
+   }
+}
+	
